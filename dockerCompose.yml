@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+backend:
+    build:
+        context: ./backend
+    container_name: fastapi-backend
+    ports:
+        - "8000:8000"
+    volumes:
+        - ./backend:/app
+    environment:
+        - PYTHONUNBUFFERD=1
+    depends_on:
+        - frountend
+
+frountend:
+    build:
+        context: ./frountend
+    container_name: frountend
+    ports:
+        - "5173:5173"
+    volumes:
+        - ./frountend:/app
+    environment:
+        - NODE_ENV=development
